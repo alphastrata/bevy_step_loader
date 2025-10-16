@@ -14,7 +14,7 @@ FILE_NAME(
 82\\AssemblyJointGraphExtractor\\76879_65a30a82_0010_2.step',
 /* time_stamp */ '2021-08-18T09:57:48+00:00',
 /* author */ (''),
-/* organisation */ (''),
+/* organization */ (''),
 /* preprocessor_version */ 'ST-DEVELOPER v18.1',
 /* originating_system */ 'Autodesk Translation Framework v10.6.0.1341',
 
@@ -199,49 +199,49 @@ POSITIVE_RATIO_MEASURE(7850.),#147);
 #176=AXIS2_PLACEMENT_3D('',#258,#221,#222);
 #177=DIRECTION('axis',(0.,0.,1.));
 #178=DIRECTION('refdir',(1.,0.,0.));
-#179=DIRECTION('centre_axis',(0.,-1.,0.));
+#179=DIRECTION('center_axis',(0.,-1.,0.));
 #180=DIRECTION('ref_axis',(-1.,0.,0.));
-#181=DIRECTION('centre_axis',(0.,-1.,0.));
+#181=DIRECTION('center_axis',(0.,-1.,0.));
 #182=DIRECTION('ref_axis',(-1.,0.,0.));
 #183=DIRECTION('',(0.,-1.,0.));
-#184=DIRECTION('centre_axis',(0.,1.,0.));
+#184=DIRECTION('center_axis',(0.,1.,0.));
 #185=DIRECTION('ref_axis',(-1.,0.,0.));
-#186=DIRECTION('centre_axis',(0.,-1.,0.));
+#186=DIRECTION('center_axis',(0.,-1.,0.));
 #187=DIRECTION('ref_axis',(1.,0.,0.));
-#188=DIRECTION('centre_axis',(0.,1.,0.));
+#188=DIRECTION('center_axis',(0.,1.,0.));
 #189=DIRECTION('ref_axis',(1.,0.,0.));
-#190=DIRECTION('centre_axis',(0.,1.,0.));
+#190=DIRECTION('center_axis',(0.,1.,0.));
 #191=DIRECTION('ref_axis',(1.,0.,0.));
-#192=DIRECTION('centre_axis',(0.,1.,0.));
+#192=DIRECTION('center_axis',(0.,1.,0.));
 #193=DIRECTION('ref_axis',(1.,0.,0.));
 #194=DIRECTION('',(0.,-1.,0.));
-#195=DIRECTION('centre_axis',(0.,1.,0.));
+#195=DIRECTION('center_axis',(0.,1.,0.));
 #196=DIRECTION('ref_axis',(1.,0.,0.));
-#197=DIRECTION('centre_axis',(0.,-1.,0.));
+#197=DIRECTION('center_axis',(0.,-1.,0.));
 #198=DIRECTION('ref_axis',(1.,0.,0.));
-#199=DIRECTION('centre_axis',(0.,-1.,0.));
+#199=DIRECTION('center_axis',(0.,-1.,0.));
 #200=DIRECTION('ref_axis',(1.,0.,0.));
-#201=DIRECTION('centre_axis',(0.,1.,0.));
+#201=DIRECTION('center_axis',(0.,1.,0.));
 #202=DIRECTION('ref_axis',(1.,0.,0.));
-#203=DIRECTION('centre_axis',(0.,-1.,0.));
+#203=DIRECTION('center_axis',(0.,-1.,0.));
 #204=DIRECTION('ref_axis',(1.,0.,0.));
 #205=DIRECTION('',(0.,1.,0.));
-#206=DIRECTION('centre_axis',(0.,-1.,0.));
+#206=DIRECTION('center_axis',(0.,-1.,0.));
 #207=DIRECTION('ref_axis',(1.,0.,0.));
-#208=DIRECTION('centre_axis',(0.,-1.,0.));
+#208=DIRECTION('center_axis',(0.,-1.,0.));
 #209=DIRECTION('ref_axis',(1.,0.,0.));
-#210=DIRECTION('centre_axis',(0.,1.,0.));
+#210=DIRECTION('center_axis',(0.,1.,0.));
 #211=DIRECTION('ref_axis',(1.,0.,0.));
-#212=DIRECTION('centre_axis',(0.,-1.,0.));
+#212=DIRECTION('center_axis',(0.,-1.,0.));
 #213=DIRECTION('ref_axis',(1.,0.,0.));
-#214=DIRECTION('centre_axis',(0.,-1.,0.));
+#214=DIRECTION('center_axis',(0.,-1.,0.));
 #215=DIRECTION('ref_axis',(1.,0.,0.));
-#216=DIRECTION('centre_axis',(0.,1.,0.));
+#216=DIRECTION('center_axis',(0.,1.,0.));
 #217=DIRECTION('ref_axis',(1.,0.,0.));
-#218=DIRECTION('centre_axis',(0.,-1.,0.));
+#218=DIRECTION('center_axis',(0.,-1.,0.));
 #219=DIRECTION('ref_axis',(1.,0.,0.));
 #220=DIRECTION('',(0.,1.,0.));
-#221=DIRECTION('centre_axis',(0.,1.,0.));
+#221=DIRECTION('center_axis',(0.,1.,0.));
 #222=DIRECTION('ref_axis',(1.,0.,0.));
 #223=DIRECTION('',(0.,1.,0.));
 #224=CARTESIAN_POINT('',(0.,0.,0.));

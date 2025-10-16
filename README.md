@@ -19,7 +19,7 @@ This crate supports two different triangulation engines with different trade-off
 - **Cons**: Less robust triangulation, particularly with complex geometries and NURBS surfaces
 - **wasm**: Naturally this is easier to use in `wasm` builds
 
-### OpenCascade (OCCT) - Optional Feature
+### [OpenCascade (OCCT) - Optional Feature](https://github.com/CadQuery/cadquery)
 - **Pros**: More robust triangulation, better handling of complex geometries and NURBS, well-established tooling
 - **Cons**: C++ wrapper dependency, slower triangulation, larger binary size
 
@@ -31,17 +31,7 @@ For the OpenCascade backend, you need a C++ library to link into, so install som
 sudo apt update
 sudo apt install libstdc++-12-dev
 ```
-
-Or check your distribution's package manager for equivalent packages.
-
-## Installation
-
-Add to your `Cargo.toml`:
-
-```toml
-[dependencies]
-bevy_step_loader = { git = "https://github.com/alphastrata/bevy_step_loader" }
-```
+> NOTE: best see _their_ docs for any deps etc, https://github.com/bschwind/opencascade-rs
 
 ## Usage
 
@@ -70,9 +60,16 @@ fn setup(asset_server: Res<AssetServer>) {
 }
 ```
 
+- Thanks to `meshopt` you can decimate the Asset. (make its mesh simpler, useful for use in game engines.)
+```rust
+    // get your asset from asset server like one normally would...
+    step_asset.simplify_mesh(0.5, 0.01);
+    // do stuff
+```
+
 ### Using OpenCascade Backend
 
-To use the OpenCascade backend for better triangulation:
+To use the OpenCascade backend for more... robust triangulation:
 
 ```toml
 [dependencies]
@@ -87,15 +84,7 @@ To enable vertex cache optimisation for better rendering performance:
 [dependencies]
 bevy_step_loader = { git = "https://github.com/alphastrata/bevy_step_loader", features = ["meshopt"] }
 ```
-
-### Enabling Mesh Simplification
-
-To enable mesh simplification for performance optimisation:
-
-```toml
-[dependencies]
-bevy_step_loader = { git = "https://github.com/alphastrata/bevy_step_loader", features = ["meshopt"] }
-```
+> NOTE: maybe via cargo after I've confirmed it's working...
 
 ## Supported File Extensions
 
@@ -105,32 +94,15 @@ bevy_step_loader = { git = "https://github.com/alphastrata/bevy_step_loader", fe
 - `.STP`
 
 ## Examples
+>Just one...
 
-The repository includes several examples:
-
-- `basic_load.rs` - Basic STEP file loading
-- `headless_test.rs` - Headless testing of STEP loading
 - `usage.rs` - Comprehensive example showing all configurations with visualisation
-- `step_3d_scene.rs` - 3D scene example based on the default Bevy 3D scene that loads STEP files from the asset server
+![usage_screenshot](assets/screenshot.png)
 
 ## Features
 
 - `opencascade`: Enable OpenCascade backend for more robust triangulation
 - `meshopt`: Enable mesh optimisation and simplification using meshopt crate
-
-## API Reference
-
-### StepAsset
-
-The main asset type that represents a loaded STEP file.
-
-#### Methods
-
-- `simplify_mesh(ratio: f32, error_threshold: f32) -> Result<(), StepLoaderError>`: 
-  Simplifies the mesh using meshopt decimation algorithm.
-  - `ratio`: Target reduction ratio (0.0 to 1.0, where 1.0 means no reduction and 0.5 means 50% reduction)
-  - `error_threshold`: Maximum allowed error for the simplification
-  - Only available when the `meshopt` feature is enabled
 
 ## License
 MIT

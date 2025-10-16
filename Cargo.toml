@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 authors = ["jer <alphastrata@gmail.com>"]
 description = """
-  A plugin for Bevy that allows you to use .STEP files in the Asset Server, it also provides a triangulator/mesher.
+  A plugin for Bevy that allows you to use .STEP files in the Asset Server, it also provides two options for a triangulator/mesher, and integrations with meshopt.
 """
 publish = false
 keywords = [
@@ -14,12 +14,11 @@ keywords = [
   "meshing",
   "triangulation",
 ]
-documentation = "https://www.github.com/alphastrata/nvtop"
+documentation = "https://www.github.com/alphastrata/bevy_step_loader"
 license = "MIT"
 homepage = "https://www.jeremyfwebb.ninja"
 
 [dependencies]
-# More granular Bevy dependencies to reduce compile times and binary size
 bevy_app = "0.17.2"
 bevy_asset = "0.17.2"
 bevy_render = "0.17.2"
@@ -35,7 +34,6 @@ triangulate = { git = "https://github.com/alphastrata/foxtrot.git", branch = "id
     "rayon",
 ] }
 
-# Optional dependencies for mesh optimization and simplification
 meshopt = { version = "0.6", optional = true }
 bytemuck = { version = "1.0", optional = true }
 
@@ -47,6 +45,6 @@ version = "0.2.0"
 optional = true
 
 [features]
-default = ["opencascade"]
+default = []
 opencascade = ["dep:opencascade"]
 meshopt = ["dep:meshopt", "dep:bytemuck"]

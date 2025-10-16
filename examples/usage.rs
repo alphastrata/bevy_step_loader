@@ -572,9 +572,9 @@ fn calculate_and_print_distances(camera_pos: Vec3, model_positions: Res<ModelPos
 }
 
 fn camera_control_system(
-    mut mouse_wheel_events: EventReader<bevy::input::mouse::MouseWheel>,
+    mut mouse_wheel_events: MessageReader<bevy::input::mouse::MouseWheel>,
     mouse_button_input: Res<ButtonInput<MouseButton>>,
-    mut cursor_moved_events: EventReader<CursorMoved>,
+    mut cursor_moved_events: MessageReader<CursorMoved>,
     mut camera_state: ResMut<CameraState>,
     model_positions: Res<ModelPositions>,
     mut query: Query<(&mut Projection, &mut Transform), With<Camera3d>>,
