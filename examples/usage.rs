@@ -307,6 +307,7 @@ fn check_step_loaded(
                     vertices: get_vertex_count(&step_asset.mesh),
                     triangles: get_triangle_count(&step_asset.mesh),
                     edges: get_triangle_count(&step_asset.mesh) * 3,
+                    bytes: calculate_mesh_size_bytes(&step_asset.mesh),
                 },
             ));
 
@@ -325,6 +326,7 @@ fn check_step_loaded(
                     vertices: get_vertex_count(&step_asset.mesh),
                     triangles: get_triangle_count(&step_asset.mesh),
                     edges: get_triangle_count(&step_asset.mesh) * 3,
+                    bytes: calculate_mesh_size_bytes(&step_asset.mesh),
                 },
             ));
 
@@ -339,6 +341,7 @@ fn check_step_loaded(
                     let triangles = get_triangle_count(&simplified_asset.mesh);
                     let edges = triangles * 3; 
                     
+                    let mesh_bytes = calculate_mesh_size_bytes(&simplified_asset.mesh);
                     commands.spawn((
                         Mesh3d(meshes.add(simplified_asset.mesh)),
                         MeshMaterial3d(foxtrot_simplified_material.clone()),
@@ -347,7 +350,12 @@ fn check_step_loaded(
                         GlobalTransform::default(),
                         RotatingModel,
                         FoxtrotSimplifiedModel,
-                        ModelMetadata { vertices, triangles, edges },
+                        ModelMetadata { 
+                            vertices, 
+                            triangles, 
+                            edges, 
+                            bytes: mesh_bytes
+                        },
                     ));
                 } else {
                     // Fallback to original mesh if simplification fails
@@ -363,7 +371,12 @@ fn check_step_loaded(
                         GlobalTransform::default(),
                         RotatingModel,
                         FoxtrotSimplifiedModel,
-                        ModelMetadata { vertices, triangles, edges },
+                        ModelMetadata { 
+                            vertices, 
+                            triangles, 
+                            edges, 
+                            bytes: calculate_mesh_size_bytes(&step_asset.mesh) 
+                        },
                     ));
                 }
             }
@@ -381,7 +394,12 @@ fn check_step_loaded(
                     GlobalTransform::default(),
                     RotatingModel,
                     FoxtrotSimplifiedModel,
-                    ModelMetadata { vertices, triangles, edges },
+                    ModelMetadata { 
+                        vertices, 
+                        triangles, 
+                        edges, 
+                        bytes: calculate_mesh_size_bytes(&step_asset.mesh) 
+                    },
                 ));
             }
 
@@ -396,6 +414,7 @@ fn check_step_loaded(
                     let triangles = get_triangle_count(&simplified_asset.mesh);
                     let edges = triangles * 3;
                     
+                    let mesh_bytes = calculate_mesh_size_bytes(&simplified_asset.mesh);
                     commands.spawn((
                         Mesh3d(meshes.add(simplified_asset.mesh)),
                         MeshMaterial3d(occt_simplified_material.clone()),
@@ -404,7 +423,12 @@ fn check_step_loaded(
                         GlobalTransform::default(),
                         RotatingModel,
                         OpenCascadeSimplifiedModel,
-                        ModelMetadata { vertices, triangles, edges },
+                        ModelMetadata { 
+                            vertices, 
+                            triangles, 
+                            edges, 
+                            bytes: mesh_bytes
+                        },
                     ));
                 } else {
                     // Fallback to original mesh if simplification fails
@@ -420,7 +444,12 @@ fn check_step_loaded(
                         GlobalTransform::default(),
                         RotatingModel,
                         OpenCascadeSimplifiedModel,
-                        ModelMetadata { vertices, triangles, edges },
+                        ModelMetadata { 
+                            vertices, 
+                            triangles, 
+                            edges, 
+                            bytes: calculate_mesh_size_bytes(&step_asset.mesh) 
+                        },
                     ));
                 }
             }
@@ -438,7 +467,12 @@ fn check_step_loaded(
                     GlobalTransform::default(),
                     RotatingModel,
                     OpenCascadeSimplifiedModel,
-                    ModelMetadata { vertices, triangles, edges },
+                    ModelMetadata { 
+                        vertices, 
+                        triangles, 
+                        edges, 
+                        bytes: calculate_mesh_size_bytes(&step_asset.mesh) 
+                    },
                 ));
             }
 
@@ -468,6 +502,7 @@ struct ModelMetadata {
     vertices: usize,
     triangles: usize,
     edges: usize,
+    bytes: usize,
 }
 
 fn rotate_models(
@@ -498,7 +533,7 @@ fn update_statistics(
         if let Ok(metadata) = metadata_param_set.p0().single() {
             **text = format!(
                 "verts: {}\ntris: {}\nedges: {}\nbytes: {}",
-                metadata.vertices, metadata.triangles, metadata.edges, metadata.vertices * 3 * 4  // Approximation: 3 floats per vertex, 4 bytes per float
+                metadata.vertices, metadata.triangles, metadata.edges, metadata.bytes
             );
         }
     }
@@ -508,7 +543,7 @@ fn update_statistics(
         if let Ok(metadata) = metadata_param_set.p1().single() {
             **text = format!(
                 "verts: {}\ntris: {}\nedges: {}\nbytes: {}",
-                metadata.vertices, metadata.triangles, metadata.edges, metadata.vertices * 3 * 4  // Approximation: 3 floats per vertex, 4 bytes per float
+                metadata.vertices, metadata.triangles, metadata.edges, metadata.bytes
             );
         }
     }
@@ -518,7 +553,7 @@ fn update_statistics(
         if let Ok(metadata) = metadata_param_set.p2().single() {
             **text = format!(
                 "verts: {}\ntris: {}\nedges: {}\nbytes: {}\nw/meshopt",
-                metadata.vertices, metadata.triangles, metadata.edges, metadata.vertices * 3 * 4  // Approximation: 3 floats per vertex, 4 bytes per float
+                metadata.vertices, metadata.triangles, metadata.edges, metadata.bytes
             );
         }
     }
@@ -528,7 +563,7 @@ fn update_statistics(
         if let Ok(metadata) = metadata_param_set.p3().single() {
             **text = format!(
                 "verts: {}\ntris: {}\nedges: {}\nbytes: {}\nw/meshopt",
-                metadata.vertices, metadata.triangles, metadata.edges, metadata.vertices * 3 * 4  // Approximation: 3 floats per vertex, 4 bytes per float
+                metadata.vertices, metadata.triangles, metadata.edges, metadata.bytes
             );
         }
     }
@@ -554,6 +589,72 @@ fn get_triangle_count(mesh: &Mesh) -> usize {
     } else {
         0
     }
+}
+
+fn calculate_mesh_size_bytes(mesh: &Mesh) -> usize {
+    let mut total_size = 0;
+    
+    // Calculate size for each attribute
+    for (_, values) in mesh.attributes() {
+        match values {
+            bevy_mesh::VertexAttributeValues::Float32(vals) => {
+                // Calculate actual heap data size: length * size of element
+                total_size += vals.len() * std::mem::size_of::<f32>();
+            }
+            bevy_mesh::VertexAttributeValues::Float32x2(vals) => {
+                total_size += vals.len() * std::mem::size_of::<[f32; 2]>();
+            }
+            bevy_mesh::VertexAttributeValues::Float32x3(vals) => {
+                total_size += vals.len() * std::mem::size_of::<[f32; 3]>();
+            }
+            bevy_mesh::VertexAttributeValues::Float32x4(vals) => {
+                total_size += vals.len() * std::mem::size_of::<[f32; 4]>();
+            }
+            bevy_mesh::VertexAttributeValues::Sint32(vals) => {
+                total_size += vals.len() * std::mem::size_of::<i32>();
+            }
+            bevy_mesh::VertexAttributeValues::Sint32x2(vals) => {
+                total_size += vals.len() * std::mem::size_of::<[i32; 2]>();
+            }
+            bevy_mesh::VertexAttributeValues::Sint32x3(vals) => {
+                total_size += vals.len() * std::mem::size_of::<[i32; 3]>();
+            }
+            bevy_mesh::VertexAttributeValues::Sint32x4(vals) => {
+                total_size += vals.len() * std::mem::size_of::<[i32; 4]>();
+            }
+            bevy_mesh::VertexAttributeValues::Uint32(vals) => {
+                total_size += vals.len() * std::mem::size_of::<u32>();
+            }
+            bevy_mesh::VertexAttributeValues::Uint32x2(vals) => {
+                total_size += vals.len() * std::mem::size_of::<[u32; 2]>();
+            }
+            bevy_mesh::VertexAttributeValues::Uint32x3(vals) => {
+                total_size += vals.len() * std::mem::size_of::<[u32; 3]>();
+            }
+            bevy_mesh::VertexAttributeValues::Uint32x4(vals) => {
+                total_size += vals.len() * std::mem::size_of::<[u32; 4]>();
+            }
+            _ => {
+                // Handle unknown/unmatched attribute types
+                // This is necessary to avoid non-exhaustive pattern matching error
+                // We simply ignore these for now - they're not common in typical meshes
+            }
+        }
+    }
+    
+    // Calculate size for indices if present
+    if let Some(indices) = mesh.indices() {
+        match indices {
+            bevy_mesh::Indices::U32(indices) => {
+                total_size += indices.len() * std::mem::size_of::<u32>();
+            }
+            bevy_mesh::Indices::U16(indices) => {
+                total_size += indices.len() * std::mem::size_of::<u16>();
+            }
+        }
+    }
+    
+    total_size
 }
 
 fn calculate_and_print_distances(camera_pos: Vec3, model_positions: Res<ModelPositions>) {
