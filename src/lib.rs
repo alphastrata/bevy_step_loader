@@ -222,7 +222,7 @@ fn triangulate_with_occt(step_data: &[u8]) -> Result<Mesh, StepLoaderError> {
 
     #[cfg(feature = "meshopt")]
     {
-        optimise_mesh(&mut bevy_mesh)?;
+        optimize_mesh(&mut bevy_mesh)?;
     }
 
     Ok(bevy_mesh)
@@ -261,14 +261,14 @@ fn triangulate_with_foxtrot(step_data: &[u8]) -> Result<Mesh, StepLoaderError> {
 
     #[cfg(feature = "meshopt")]
     {
-        optimise_mesh(&mut bevy_mesh)?;
+        optimize_mesh(&mut bevy_mesh)?;
     }
 
     Ok(bevy_mesh)
 }
 
 #[cfg(feature = "meshopt")]
-fn optimise_mesh(mesh: &mut Mesh) -> Result<(), StepLoaderError> {
+fn optimize_mesh(mesh: &mut Mesh) -> Result<(), StepLoaderError> {
     let positions: Vec<[f32; 3]> = match mesh.attribute(Mesh::ATTRIBUTE_POSITION) {
         Some(positions) => match positions {
             bevy_mesh::VertexAttributeValues::Float32x3(pos) => pos.to_vec(),
@@ -286,7 +286,7 @@ fn optimise_mesh(mesh: &mut Mesh) -> Result<(), StepLoaderError> {
     };
 
     if !indices.is_empty() && !positions.is_empty() {
-        meshopt::optimise_vertex_cache_in_place(&mut indices, positions.len());
+        meshopt::optimize_vertex_cache_in_place(&mut indices, positions.len());
         
         *mesh.indices_mut().unwrap() = Indices::U32(indices);
     }
