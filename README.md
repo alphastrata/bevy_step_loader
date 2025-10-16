@@ -103,6 +103,3 @@ bevy_step_loader = { git = "https://github.com/alphastrata/bevy_step_loader", fe
 
 - `opencascade`: Enable OpenCascade backend for more robust triangulation
 - `meshopt`: Enable mesh optimisation and simplification using meshopt crate
-
-## License
-MIT
