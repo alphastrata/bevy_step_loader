@@ -4,7 +4,7 @@ A Bevy plugin that adds support for loading STEP and STP files as Bevy Mesh asse
 
 
 # Why?
-Well, .STEP is a boundary representation, so unlike .gltf or .ojb there is no 'Mesh' there is no list of verticies, edges and the faces they make up, instead geometry is defined by the simplest definitions possible, for example a `circle` would have a 
+Well, .STEP is a boundary representation, so unlike .gltf or .ojb there is no 'Mesh' there is no list of vertices, edges and the faces they make up, instead geometry is defined by the simplest definitions possible, for example a `circle` would have a 
 `position`, probably `x,y,z` and a `radius` of say, `2`. 
 
 Which is very different from a circle made up of a mesh, which will have as many edges as you thought kept it looking pretty much 'circular' and so on.
