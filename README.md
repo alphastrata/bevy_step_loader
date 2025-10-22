@@ -2,6 +2,21 @@
 
 A Bevy plugin that adds support for loading STEP and STP files as Bevy Mesh assets.
 
+
+# Why?
+Well, .STEP is a boundary representation, so unlike .gltf or .ojb there is no 'Mesh' there is no list of verticies, edges and the faces they make up, instead geometry is defined by the simplest definitions possible, for example a `circle` would have a 
+`position`, probably `x,y,z` and a `radius` of say, `2`. 
+
+Which is very different from a circle made up of a mesh, which will have as many edges as you thought kept it looking pretty much 'circular' and so on.
+
+Most CAD packages can export to `.obj` and `.gltf` etc, but that assumes you have access to one, onshape is free, but _only_ if you make your .STEP data public.
+
+If you're wondering `.STEP` files are _**NOT**_ supported natively by popular modelling tools like blender (because they're a very different kind of geometric representation probably...).
+
+So that's why.
+
+> P.S if you want a blender plugin that does just that -> https://alphastrata.gumroad.com/l/step2blender I made one using the same libraries that _this_ plugin uses.
+
 ## Features
 
 - Load STEP files directly into Bevy scenes as meshes
