@@ -211,7 +211,7 @@ fn triangulate_with_occt(step_data: &[u8]) -> Result<Mesh, StepLoaderError> {
 
     let mut bevy_mesh = Mesh::new(
         PrimitiveTopology::TriangleList,
-        RenderAssetUsages::all(), // Using the asset API directly
+        RenderAssetUsages::default(),
     );
     bevy_mesh.insert_attribute(Mesh::ATTRIBUTE_POSITION, vertices);
     bevy_mesh.insert_indices(Indices::U32(indices));
@@ -250,7 +250,7 @@ fn triangulate_with_foxtrot(step_data: &[u8]) -> Result<Mesh, StepLoaderError> {
 
     let mut bevy_mesh = Mesh::new(
         PrimitiveTopology::TriangleList,
-        RenderAssetUsages::all(), // Using the asset API directly
+        RenderAssetUsages::default(),
     );
     bevy_mesh.insert_attribute(Mesh::ATTRIBUTE_POSITION, vertices);
     bevy_mesh.insert_indices(Indices::U32(indices));
