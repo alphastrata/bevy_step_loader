@@ -1,8 +1,7 @@
 use bevy_app::{Plugin, App};
 use bevy_asset::{Asset, AssetLoader, LoadContext, io::Reader, RenderAssetUsages, AssetApp};
 use bevy_reflect::TypePath;
-use bevy_mesh::{Mesh, Indices};
-use wgpu_types::PrimitiveTopology;
+use bevy_mesh::{Mesh, Indices, PrimitiveTopology};
 
 #[cfg(feature = "meshopt")]
 use meshopt;
@@ -146,7 +145,7 @@ impl StepAsset {
 }
 
 // The loader for STEP files
-#[derive(Default)]
+#[derive(Default, TypePath)]
 pub struct StepLoader;
 
 impl AssetLoader for StepLoader {
