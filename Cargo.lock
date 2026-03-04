@@ -270,6 +270,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "async-io"
+version = "2.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "456b8a8feb6f42d237746d4b3e9a178494627745c3c56c6ea55d92ba50d026fc"
+dependencies = [
+ "autocfg",
+ "cfg-if",
+ "concurrent-queue",
+ "futures-io",
+ "futures-lite",
+ "parking",
+ "polling",
+ "rustix 1.1.2",
+ "slab",
+ "windows-sys 0.61.2",
+]
+
+[[package]]
 name = "async-lock"
 version = "3.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -419,9 +437,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_app"
-version = "0.18.0"
+version = "0.18.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2271a0123a7cc355c3fe98754360c75aa84b29f2a6b1a9f8c00aac427570d174"
+checksum = "def9f41aa5bf9b9dec8beda307a332798609cffb9d44f71005e0cfb45164f2f6"
 dependencies = [
  "bevy_derive",
  "bevy_ecs",
@@ -442,13 +460,14 @@ dependencies = [
 
 [[package]]
 name = "bevy_asset"
-version = "0.18.0"
+version = "0.18.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b1f7361669d1426a3359cb92f890ef9c62bd6e6b67f0190d2c5279d25ce24168"
+checksum = "29f86fed15972b9fb1a3f7b092cf0390e67131caaedab15a2707c043e3a3c886"
 dependencies = [
  "async-broadcast",
  "async-channel",
  "async-fs",
+ "async-io",
  "async-lock",
  "atomicow",
  "bevy_android",
@@ -990,9 +1009,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_mesh"
-version = "0.18.0"
+version = "0.18.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aacf09d0ffd1a15baf8d201c4a34b918912a506395c2817aa55ab3d3776c09f2"
+checksum = "288f590c8173d4cca3cae5f2ba579accd5ed1a35dd3fab338f427eb39d55f05e"
 dependencies = [
  "bevy_app",
  "bevy_asset",
@@ -1138,9 +1157,9 @@ checksum = "4f98cbc6d34bbdb58240b72ed1731931b4991a893b3a3238bb7c42ae054aa676"
 
 [[package]]
 name = "bevy_reflect"
-version = "0.18.0"
+version = "0.18.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b2a977e2b8dba65b6e9c11039c5f9ef108be428f036b3d1cac13ad86ec59f9c"
+checksum = "d1dfeb67a9fe4f59003a84f5f99ba6302141c70e926601cbc6abfd4a1eea9ca9"
 dependencies = [
  "assert_type_match",
  "bevy_platform",
@@ -1181,9 +1200,9 @@ dependencies = [
 
 [[package]]
 name = "bevy_render"
-version = "0.18.0"
+version = "0.18.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d6b2c9a276646bde8ba58a7e15711b459fb4a5cdf46c47059b7a310f97a70d9c"
+checksum = "243523e33fe5dfcebc4240b1eb2fc16e855c5d4c0ea6a8393910740956770f44"
 dependencies = [
  "async-channel",
  "bevy_app",
@@ -2986,7 +3005,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4b0f83760fb341a774ed326568e19f5a863af4a952def8c39f9ab92fd95b88e5"
 dependencies = [
  "equivalent",
- "hashbrown 0.15.5",
+ "hashbrown 0.16.1",
  "serde",
  "serde_core",
 ]

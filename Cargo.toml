@@ -19,11 +19,11 @@ license = "MIT"
 homepage = "https://www.jeremyfwebb.ninja"
 
 [dependencies]
-bevy_app = "0.18.0"
-bevy_asset = "0.18.0"
-bevy_render = "0.18.0"
-bevy_mesh = "0.18.0"
-bevy_reflect = "0.18.0"
+bevy_app = "0.18.1"
+bevy_asset = "0.18.1"
+bevy_render = "0.18.1"
+bevy_mesh = "0.18.1"
+bevy_reflect = "0.18.1"
 
 # Using a fork of Foxtrot because their repo appears to be dead & this one has some fixes brought into it from outstanding PRs
 step = { git = "https://github.com/alphastrata/foxtrot.git", branch = "ideas", package = "step", features = [
