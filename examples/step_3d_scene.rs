@@ -58,7 +58,7 @@ fn setup(
     // Multiple point lights positioned at 45° angles from camera
     commands.spawn((
         PointLight {
-            shadows_enabled: true,
+            shadow_maps_enabled: true,
             intensity: 1500000.0, // Very bright to illuminate STEP models well
             range: 100.0,
             ..default()
@@ -72,7 +72,7 @@ fn setup(
 
     commands.spawn((
         PointLight {
-            shadows_enabled: true,
+            shadow_maps_enabled: true,
             intensity: 1200000.0, // Secondary light with slightly lower intensity
             range: 100.0,
             ..default()

@@ -82,7 +82,7 @@ fn setup_scene(
     commands.spawn((
         PointLight {
             intensity: 1500.0,
-            shadows_enabled: true,
+            shadow_maps_enabled: true,
             range: 1500.0,
             ..default()
         },
@@ -92,7 +92,7 @@ fn setup_scene(
     commands.spawn((
         PointLight {
             intensity: 1200.0,
-            shadows_enabled: true,
+            shadow_maps_enabled: true,
             range: 1500.0,
             ..default()
         },
@@ -120,7 +120,7 @@ fn setup_ui(mut commands: Commands, _asset_server: Res<AssetServer>) {
     commands.spawn((
         Text::new("Foxtrot"),
         TextFont {
-            font_size: 16.0,
+            font_size: FontSize::Px(16.0),
             ..default()
         },
         TextColor(Color::srgb(0.9, 0.5, 0.5)),
@@ -136,7 +136,7 @@ fn setup_ui(mut commands: Commands, _asset_server: Res<AssetServer>) {
     commands.spawn((
         Text::new("OCCT"),
         TextFont {
-            font_size: 16.0,
+            font_size: FontSize::Px(16.0),
             ..default()
         },
         TextColor(Color::srgb(0.5, 0.5, 0.9)),
@@ -152,7 +152,7 @@ fn setup_ui(mut commands: Commands, _asset_server: Res<AssetServer>) {
     commands.spawn((
         Text::new("Foxtrot"),
         TextFont {
-            font_size: 16.0,
+            font_size: FontSize::Px(16.0),
             ..default()
         },
         TextColor(Color::srgb(0.5, 0.9, 0.5)),
@@ -168,7 +168,7 @@ fn setup_ui(mut commands: Commands, _asset_server: Res<AssetServer>) {
     commands.spawn((
         Text::new("OCCT"),
         TextFont {
-            font_size: 16.0,
+            font_size: FontSize::Px(16.0),
             ..default()
         },
         TextColor(Color::srgb(0.9, 0.9, 0.5)),
@@ -184,7 +184,7 @@ fn setup_ui(mut commands: Commands, _asset_server: Res<AssetServer>) {
     commands.spawn((
         Text::new("verts: 0\ntris: 0\nedges: 0\nbytes: 0"),
         TextFont {
-            font_size: 14.0,
+            font_size: FontSize::Px(14.0),
             ..default()
         },
         TextColor(Color::srgb(0.9, 0.5, 0.5)),
@@ -200,7 +200,7 @@ fn setup_ui(mut commands: Commands, _asset_server: Res<AssetServer>) {
     commands.spawn((
         Text::new("verts: 0\ntris: 0\nedges: 0\nbytes: 0"),
         TextFont {
-            font_size: 14.0,
+            font_size: FontSize::Px(14.0),
             ..default()
         },
         TextColor(Color::srgb(0.5, 0.5, 0.9)),
@@ -216,7 +216,7 @@ fn setup_ui(mut commands: Commands, _asset_server: Res<AssetServer>) {
     commands.spawn((
         Text::new("verts: 0\ntris: 0\nedges: 0\nbytes: 0\nw/meshopt"),
         TextFont {
-            font_size: 14.0,
+            font_size: FontSize::Px(14.0),
             ..default()
         },
         TextColor(Color::srgb(0.5, 0.9, 0.5)),
@@ -232,7 +232,7 @@ fn setup_ui(mut commands: Commands, _asset_server: Res<AssetServer>) {
     commands.spawn((
         Text::new("verts: 0\ntris: 0\nedges: 0\nbytes: 0\nw/meshopt"),
         TextFont {
-            font_size: 14.0,
+            font_size: FontSize::Px(14.0),
             ..default()
         },
         TextColor(Color::srgb(0.9, 0.9, 0.5)),
